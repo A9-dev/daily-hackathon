@@ -1,12 +1,21 @@
+"use client";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { auth } from "@/app/firebase/config";
+import { useAuthState } from "react-firebase-hooks/auth";
+import SignIn from "@/components/sign-in";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [user] = useAuthState(auth);
+  const userSession = sessionStorage.getItem("user");
+
   return (
     <>
       <html lang="en" suppressHydrationWarning>
@@ -19,7 +28,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <div className="p-5 flex justify-between overflow-hidden items-center border-dashed border-b-2 h-28">
-              <p>Daily hackathons</p>
+              <h1 className="text-5xl font-extrabold">Daily Hackathons</h1>
               <nav className=" float-right">
                 <Button className="mx-1" variant={"outline"}>
                   Button 1
@@ -27,9 +36,31 @@ export default function RootLayout({
                 <Button className="mx-1" variant={"outline"}>
                   Button 2
                 </Button>
-                <Button className="mx-1" variant={"outline"}>
-                  Button 3
-                </Button>
+                {user || userSession ? (
+                  <Button
+                    className="mx-1"
+                    variant={"outline"}
+                    onClick={(e) => {
+                      auth.signOut();
+                      sessionStorage.removeItem("user");
+                    }}
+                  >
+                    Sign out
+                  </Button>
+                ) : (
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button className="mx-1" variant={"outline"}>
+                        Sign in
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-80">
+                      <div className="grid gap-4">
+                        <SignIn />
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                )}
               </nav>
             </div>
             {children}
