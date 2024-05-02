@@ -14,10 +14,17 @@ export default function Home() {
           <p className="text-center">Left Column</p>
         </div>
 
-        <div className="w-1/2 p-4 border rounded-lg mx-1 h-5/6">
+        <div className="w-1/2 p-4 border rounded-lg mx-1 h-fit">
           <div className="text-center">
             <p className="mb-4">Main Content</p>
-            {user && <p className="mb-4">Signed in as {user.email}!</p>}
+            {user && <p className="mb-4 h-5/6">Signed in as {user.email}!</p>}
+            <a
+              className="twitter-timeline"
+              data-height="800"
+              href="https://twitter.com/XDevelopers?ref_src=twsrc%5Etfw"
+            >
+              Tweets by XDevelopers
+            </a>
           </div>
         </div>
 

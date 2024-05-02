@@ -80,6 +80,7 @@ export default function RootLayout({
             </div>
           </ThemeProvider>
         </body>
+        <script async src="https://platform.twitter.com/widgets.js"></script>
       </html>
     </>
   );
