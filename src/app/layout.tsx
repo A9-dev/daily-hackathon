@@ -7,6 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { auth } from "@/app/firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "@/components/sign-in";
+import { useRouter } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -15,6 +16,7 @@ export default function RootLayout({
 }>) {
   const [user] = useAuthState(auth);
   const userSession = sessionStorage.getItem("user");
+  const router = useRouter();
 
   return (
     <>
@@ -30,11 +32,15 @@ export default function RootLayout({
             <div className="p-5 flex justify-between overflow-hidden items-center border-dashed border-b-2 h-28">
               <h1 className="text-5xl font-extrabold">Daily Hackathons</h1>
               <nav className=" float-right">
-                <Button className="mx-1" variant={"outline"}>
-                  Button 1
+                <Button className="mx-1" variant={"outline"} onClick={() => router.push("/")}>
+                  Home
                 </Button>
-                <Button className="mx-1" variant={"outline"}>
-                  Button 2
+                <Button
+                  className="mx-1"
+                  variant={"outline"}
+                  onClick={() => router.push("/archive")}
+                >
+                  Archive
                 </Button>
                 {user || userSession ? (
                   <Button
