@@ -29,7 +29,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="p-5 sticky top-0 w-full bg-background  flex justify-between overflow-hidden items-center border-dashed border-b-2 h-28">
+            <div className="p-5 w-full bg-background  flex justify-between overflow-hidden items-center border-dashed border-b-2 h-28">
               <h1 className="text-5xl font-extrabold">Daily Hackathons</h1>
               <nav className=" float-right">
                 <Button className="mx-1" variant={"outline"} onClick={() => router.push("/")}>
