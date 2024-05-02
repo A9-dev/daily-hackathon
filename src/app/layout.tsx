@@ -29,7 +29,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="p-5 flex justify-between overflow-hidden items-center border-dashed border-b-2 h-28">
+            <div className="p-5 sticky top-0 w-full bg-background  flex justify-between overflow-hidden items-center border-dashed border-b-2 h-28">
               <h1 className="text-5xl font-extrabold">Daily Hackathons</h1>
               <nav className=" float-right">
                 <Button className="mx-1" variant={"outline"} onClick={() => router.push("/")}>
@@ -70,7 +70,7 @@ export default function RootLayout({
               </nav>
             </div>
             {children}
-            <div className="p-5 fixed flex items-center justify-center left-0 bottom-0 w-full border-dashed border-t-2 h-16 min-h-1/6 text-center">
+            <div className="p-5  flex items-center bg-secondary justify-center left-0 bottom-0 w-full border-dashed border-t-2 h-16 min-h-1/6 text-center">
               <i>Made by Henry Pearson and Connor Brook</i>
               <a href="https://github.com/A9-dev/daily-hackathon" target="_blank">
                 <Button variant={"outline"} className="mx-5 align-middle">
